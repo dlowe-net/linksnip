@@ -4,7 +4,19 @@
     "version": "1.0",
     "manifest_version": 3,
     "action": {
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/img/linksnip16.png",
+            "32": "/img/linksnip32.png",
+            "48": "/img/linksnip48.png",
+            "128": "/img/linksnip128.png"
+        }
+    },
+    "icons": {
+        "16": "/img/linksnip16.png",
+        "32": "/img/linksnip32.png",
+        "48": "/img/linksnip48.png",
+        "128": "/img/linksnip128.png"
     },
     "permissions": ["clipboardRead", "tabs"]
 }
