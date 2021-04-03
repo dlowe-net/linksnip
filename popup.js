@@ -11,7 +11,7 @@ const patterns = [
          const parts = url.pathname.split('/')
          const idx = parts.indexOf('dp')
          if (idx) {
-             return `https://amzn.com/${parts[dpIdx+1]}`;
+             return `https://amzn.com/${parts[idx+1]}`;
          }
          return url.href;
      }},
@@ -29,7 +29,7 @@ const patterns = [
 function mungeUrl(oURLstr) {
     const url = new URL(oURLstr);
     for (let pattern of patterns) {
-        if (!url.hostname.endswith(pattern.host)) {
+        if (!url.hostname.endsWith(pattern.host)) {
             continue;
         }
         if (!url.pathname.match(pattern.path)) {
