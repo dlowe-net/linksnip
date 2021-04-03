@@ -18,5 +18,5 @@
         "48": "/img/linksnip48.png",
         "128": "/img/linksnip128.png"
     },
-    "permissions": ["clipboardRead", "tabs"]
+    "permissions": ["clipboardWrite", "tabs"]
 }
