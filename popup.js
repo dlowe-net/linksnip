@@ -1,3 +1,36 @@
+const patterns = [
+    {host: /youtube.com$/, path: /^\/watch/,
+     shorten:(url) => {
+         if (url.searchParams.get('v')) {
+             return `https://youtu.be/${url.searchParams.get('v')}`;
+         }
+         return url.href;
+     }},
+    {host: /amazon.com$/, path: /\/dp\//,
+     shorten:(url) => {
+         const parts = url.pathname.split('/')
+         const idx = parts.indexOf('dp')
+         if (idx) {
+             return `https://amzn.com/${parts[dpIdx+1]}`;
+         }
+         return url.href;
+     }}
+];
+
+function mungeUrl(oURLstr) {
+    const url = new URL(oURLstr);
+    for (let pattern of patterns) {
+        if (!url.hostname.match(pattern.host)) {
+            continue;
+        }
+        if (!url.pathname.match(pattern.path)) {
+            continue;
+        }
+        return pattern.shorten(url)
+    }
+    return oURLstr;
+}
+
 function delay(ms) {
     return function(x) {
         return new Promise(resolve => setTimeout(() => resolve(x), ms));
@@ -7,7 +40,7 @@ const statusDiv = document.getElementById("status");
 chrome.tabs.query({ active: true, currentWindow: true }).then(
     function (result) {
         const tab = result[0];
-        const url = tab.url || tab.pendingUrl;
+        const url = mungeUrl(tab.url || tab.pendingUrl);
         navigator.clipboard.writeText(url).then(
             function() {
                 statusDiv.innerHTML = "Copied " + url;
