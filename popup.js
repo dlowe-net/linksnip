@@ -1,12 +1,12 @@
 const patterns = [
-    {host: /youtube.com$/, path: /^\/watch/,
+    {host: "youtube.com", path: /^\/watch/,
      shorten:(url) => {
          if (url.searchParams.get('v')) {
              return `https://youtu.be/${url.searchParams.get('v')}`;
          }
          return url.href;
      }},
-    {host: /amazon.com$/, path: /\/dp\//,
+    {host: "amazon.com", path: /\/dp\//,
      shorten:(url) => {
          const parts = url.pathname.split('/')
          const idx = parts.indexOf('dp')
@@ -15,7 +15,7 @@ const patterns = [
          }
          return url.href;
      }},
-    {host: /reddit.com$/, path: /^\/r/,
+    {host: "reddit.com", path: /^\/r/,
      shorten:(url) => {
          const parts = url.pathname.split('/')
          if (parts[1] == 'r' && parts[3] == 'comments' && parts.length == 7) {
@@ -29,7 +29,7 @@ const patterns = [
 function mungeUrl(oURLstr) {
     const url = new URL(oURLstr);
     for (let pattern of patterns) {
-        if (!url.hostname.match(pattern.host)) {
+        if (!url.hostname.endswith(pattern.host)) {
             continue;
         }
         if (!url.pathname.match(pattern.path)) {
