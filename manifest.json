@@ -1,0 +1,10 @@
+{
+    "name": "Linksnip",
+    "description": "Copies a minimal link from the address bar into the clipboard.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": ["clipboardRead", "tabs"]
+}
