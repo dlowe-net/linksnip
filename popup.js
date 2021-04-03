@@ -14,6 +14,15 @@ const patterns = [
              return `https://amzn.com/${parts[dpIdx+1]}`;
          }
          return url.href;
+     }},
+    {host: /reddit.com$/, path: /^\/r/,
+     shorten:(url) => {
+         const parts = url.pathname.split('/')
+         if (parts[1] == 'r' && parts[3] == 'comments' && parts.length == 7) {
+             // article pages only
+             return `https://redd.it/${parts[4]}`
+         }
+         return url.href;
      }}
 ];
 
