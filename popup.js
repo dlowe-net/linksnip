@@ -26,6 +26,10 @@ const patterns = [
      }}
 ];
 
+const removeParams = [
+    "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"
+];
+
 function mungeUrl(oURLstr) {
     const url = new URL(oURLstr);
     for (let pattern of patterns) {
@@ -35,9 +39,15 @@ function mungeUrl(oURLstr) {
         if (!url.pathname.match(pattern.path)) {
             continue;
         }
+        for (let param of removeParams) {
+            url.searchParams.delete(param);
+        }
         return pattern.shorten(url)
     }
-    return oURLstr;
+    for (let param of removeParams) {
+        url.searchParams.delete(param);
+    }
+    return url.href;
 }
 
 function delay(ms) {
