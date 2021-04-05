@@ -6,14 +6,20 @@ const patterns = [
          }
          return url.href;
      }},
-    {host: "amazon.com", path: /\/dp\//,
+    {host: "amazon.com", path: /\/(?:dp|gp\/product|d)\//,
      shorten:(url) => {
          const parts = url.pathname.split('/')
-         const idx = parts.indexOf('dp')
-         if (idx) {
-             return `https://amzn.com/${parts[idx+1]}`;
+         let idx = parts.indexOf('dp')
+         if (idx == -1) {
+             idx = parts.indexOf('product')
          }
-         return url.href;
+         if (idx == -1) {
+             idx = parts.indexOf('d')
+         }
+         if (idx == -1) {
+             return url.href;
+         }
+         return `https://amzn.com/${parts[idx+1]}`;
      }},
     {host: "reddit.com", path: /^\/r\/[^/]+\/comments/,
      shorten:(url) => {
