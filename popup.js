@@ -15,10 +15,10 @@ const patterns = [
          }
          return url.href;
      }},
-    {host: "reddit.com", path: /^\/r/,
+    {host: "reddit.com", path: /^\/r\/[^/]+\/comments/,
      shorten:(url) => {
          const parts = url.pathname.split('/')
-         if (parts[1] == 'r' && parts[3] == 'comments' && parts.length == 7) {
+         if (parts.length == 7) {
              // article pages only
              return `https://redd.it/${parts[4]}`
          }
