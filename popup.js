@@ -29,6 +29,20 @@ const patterns = [
              return `https://redd.it/${parts[4]}`
          }
          return url.href;
+     }},
+    {host: "ebay.com", path: /^\/itm\//,
+     shorten:(url) => {
+         const parts = url.pathname.split('/')
+         // ebay grabs the item number from position 3 first, then falls back to position 2.
+         if (parts.length > 2) {
+             if (parts[3].match(/^\d+$/)) {
+                 return `https://ebay.com/itm/${parts[3]}`;
+             }
+             if (parts[2].match(/^\d+$/)) {
+                 return `https://ebay.com/itm/${parts[2]}`;
+             }
+         }
+         return url.href;
      }}
 ];
 
