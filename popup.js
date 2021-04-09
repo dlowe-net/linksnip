@@ -1,73 +1,24 @@
-const patterns = [
-    {host: "youtube.com", path: /^\/watch/,
-     shorten:(url) => {
-         if (url.searchParams.get('v')) {
-             return `https://youtu.be/${url.searchParams.get('v')}`;
-         }
-         return url.href;
-     }},
-    {host: "amazon.com", path: /\/(?:dp|gp\/product|d)\//,
-     shorten:(url) => {
-         const parts = url.pathname.split('/')
-         let idx = parts.indexOf('dp')
-         if (idx == -1) {
-             idx = parts.indexOf('product')
-         }
-         if (idx == -1) {
-             idx = parts.indexOf('d')
-         }
-         if (idx == -1) {
-             return url.href;
-         }
-         return `https://amzn.com/${parts[idx+1]}`;
-     }},
-    {host: "reddit.com", path: /^\/r\/[^/]+\/comments/,
-     shorten:(url) => {
-         const parts = url.pathname.split('/')
-         if (parts.length == 7) {
-             // article pages only
-             return `https://redd.it/${parts[4]}`
-         }
-         return url.href;
-     }},
-    {host: "ebay.com", path: /^\/itm\//,
-     shorten:(url) => {
-         const parts = url.pathname.split('/')
-         // ebay grabs the item number from position 3 first, then falls back to position 2.
-         if (parts.length > 2) {
-             if (parts[3].match(/^\d+$/)) {
-                 return `https://ebay.com/itm/${parts[3]}`;
-             }
-             if (parts[2].match(/^\d+$/)) {
-                 return `https://ebay.com/itm/${parts[2]}`;
-             }
-         }
-         return url.href;
-     }}
-];
-
-const removeParams = [
-    "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"
+const rules = [
+    {pattern: /^https?:\/\/(?:www\.)?youtube.com\/watch\?v=([0-9a-zA-Z]+)/, sub: "https://youtu.be/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?reddit.com\/r\/[^\/]+\/comments\/([0-9a-z]+)/, sub: "https://redd.it/$1"},
+    {pattern: /^https?:\/\/(?:www\.|smile\.)?amazon.com\/.*?\/(?:dp|gp\/product|d)\/([0-9A-Z]+)/, sub: "https://amzn.com/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?ebay.com\/itm\/[^\/]+\/([0-9]+)/, sub: "https://ebay.com/itm/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?ebay.com\/itm\/([0-9]+)/, sub: "https://ebay.com/itm/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?stackoverflow.com\/questions\/([0-9]+)/, sub: "https://stackoverflow.com/q/$1"},
+    {pattern: /^https?:\/\/([^.]+)\.stackexchange.com\/questions\/([0-9]+)/, sub: "https://$1.stackexchange.com/q/$2"},
 ];
 
 function mungeUrl(oURLstr) {
-    const url = new URL(oURLstr);
-    for (let pattern of patterns) {
-        if (!url.hostname.endsWith(pattern.host)) {
+    for (let rule of rules) {
+        const match = oURLstr.match(rule.pattern);
+        if (!match) {
             continue;
         }
-        if (!url.pathname.match(pattern.path)) {
-            continue;
-        }
-        for (let param of removeParams) {
-            url.searchParams.delete(param);
-        }
-        return pattern.shorten(url)
+        return rule.sub.replaceAll(/\$([0-9]+)/g, (_, num) => {
+            return match[parseInt(num)];
+        });
     }
-    for (let param of removeParams) {
-        url.searchParams.delete(param);
-    }
-    return url.href;
+    return oURLstr;
 }
 
 function delay(ms) {
@@ -75,6 +26,7 @@ function delay(ms) {
         return new Promise(resolve => setTimeout(() => resolve(x), ms));
     };
 }
+
 const statusDiv = document.getElementById("status");
 chrome.tabs.query({ active: true, currentWindow: true }).then(
     function (result) {
