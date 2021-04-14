@@ -18,5 +18,13 @@
         "48": "/img/linksnip48.png",
         "128": "/img/linksnip128.png"
     },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+L"
+            },
+            "description": "Copy shortened link to clipboard"
+        }
+    },
     "permissions": ["clipboardWrite", "tabs"]
 }
