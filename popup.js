@@ -5,7 +5,9 @@ const rules = [
     {pattern: /^https?:\/\/(?:www\.|smile\.)?amazon.com\/(?:.*?\/)?(?:dp|gp\/product|d)\/([0-9A-Z]+)/, sub: "https://amzn.com/$1"},
     {pattern: /^https?:\/\/(?:www\.)?ebay.com\/itm\/[^\/]+\/([0-9]+)/, sub: "https://ebay.com/itm/$1"},
     {pattern: /^https?:\/\/(?:www\.)?ebay.com\/itm\/([0-9]+)/, sub: "https://ebay.com/itm/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?stackoverflow.com\/questions\/[0-9]+\/[^\/]+\/([0-9]+)/, sub: "https://stackoverflow.com/a/$1"},
     {pattern: /^https?:\/\/(?:www\.)?stackoverflow.com\/questions\/([0-9]+)/, sub: "https://stackoverflow.com/q/$1"},
+    {pattern: /^https?:\/\/([^.]+)\.stackexchange.com\/questions\/[0-9]+\/[^\/]+\/([0-9]+)/, sub: "https://$1.stackexchange.com/a/$2"},
     {pattern: /^https?:\/\/([^.]+)\.stackexchange.com\/questions\/([0-9]+)/, sub: "https://$1.stackexchange.com/q/$2"},
 ];
 
