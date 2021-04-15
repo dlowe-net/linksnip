@@ -72,6 +72,6 @@ function popup() {
         });
 }
 
-if (document.body.id == "linksnip-popup-body") {
+if (document.body && document.body.id == "linksnip-popup-body") {
     popup();
 }
