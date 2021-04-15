@@ -1,7 +1,7 @@
 const rules = [
     {pattern: /^https?:\/\/(?:www\.)?youtube.com\/watch\?v=([0-9a-zA-Z]+)/, sub: "https://youtu.be/$1"},
     {pattern: /^https?:\/\/(?:www\.)?reddit.com\/r\/[^\/]+\/comments\/([0-9a-z]+)/, sub: "https://redd.it/$1"},
-    {pattern: /^https?:\/\/(?:www\.|smile\.)?amazon.com\/.*?\/(?:dp|gp\/product|d)\/([0-9A-Z]+)/, sub: "https://amzn.com/$1"},
+    {pattern: /^https?:\/\/(?:www\.|smile\.)?amazon.com\/(?:.*?\/)?(?:dp|gp\/product|d)\/([0-9A-Z]+)/, sub: "https://amzn.com/$1"},
     {pattern: /^https?:\/\/(?:www\.)?ebay.com\/itm\/[^\/]+\/([0-9]+)/, sub: "https://ebay.com/itm/$1"},
     {pattern: /^https?:\/\/(?:www\.)?ebay.com\/itm\/([0-9]+)/, sub: "https://ebay.com/itm/$1"},
     {pattern: /^https?:\/\/(?:www\.)?stackoverflow.com\/questions\/([0-9]+)/, sub: "https://stackoverflow.com/q/$1"},
