@@ -57,6 +57,12 @@
         {url:
          "https://www.google.com/search?q=%22foo%22&sxsrf=ALeKk02zqj1mcj3ox6qV_tNHTbgbfO6qpA:1618505013923&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjwv6-D2YDwAhVRmeAKHZaaC44Q_AUoA3oECAIQBQ&biw=1920&bih=950",
          want: "https://google.com/search?q=%22foo%22&tbm=isch"},
+        {url:
+         "https://example.com/foo?fbclid=23842384238742",
+         want: "https://example.com/foo"},
+        {url:
+         "https://example.com/foo?utm_source=foo&utm_medium=tests&utm_campaign=epic",
+         want: "https://example.com/foo"}
     ];
     function runTests() {
         var runCount = 0;

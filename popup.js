@@ -17,6 +17,15 @@ const rules = [
     {pattern: /^https?:\/\/(?:www\.)?google.com\/search/, params: ["q"], sub: "https://goo.gl/search/${q}"}
 ];
 
+const surplusParams = [
+    "source", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
+    "fbclid", "igshid", "srcid", "gclid", "ocid", "ncid", "nr_email_referer", "ref",
+    "spm", "utm_content", "utm_name", "utm_cid", "utm_reader", "utm_viz_id",
+    "utm_pubreferrer", "utm_swu", "ICID", "icid", "_hsenc", "_hsmi", "mkt_tok",
+    "mc_cid", "mc_eid", "ns_source", "ns_mchannel", "ns_campaign", "ns_linkname",
+    "ns_fee", "sr_share", "vero_conv", "vero_id"
+];
+
 function flickrUrl(m) {
     const codeTable = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
     var num = parseInt(m[1]);
@@ -29,7 +38,8 @@ function flickrUrl(m) {
 }
 
 function mungeUrl(oURLstr) {
-    const params = new URL(oURLstr).searchParams;
+    const url = new URL(oURLstr)
+    const params = url.searchParams;
 
     toNextRule:
     for (let rule of rules) {
@@ -53,7 +63,13 @@ function mungeUrl(oURLstr) {
             return encodeURI(params.get(param))
         });
     }
-    return oURLstr;
+
+    // The rules will generate the minimal url, but if none of those
+    // match, we can still remove extra parameters.
+    for (let param of surplusParams) {
+        params.delete(param)
+    }
+    return url.toString();
 }
 
 function delay(ms) {
