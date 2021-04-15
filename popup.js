@@ -1,5 +1,6 @@
 const rules = [
-    {pattern: /^https?:\/\/(?:www\.)?youtube.com\/watch\?v=([0-9a-zA-Z]+)/, sub: "https://youtu.be/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?youtube.com\/watch/, params: ["v", "t"], sub: "https://youtu.be/${v}?t=${t}"},
+    {pattern: /^https?:\/\/(?:www\.)?youtube.com\/watch/, params: ["v"], sub: "https://youtu.be/${v}"},
     {pattern: /^https?:\/\/(?:www\.)?reddit.com\/r\/[^\/]+\/comments\/([0-9a-z]+)/, sub: "https://redd.it/$1"},
     {pattern: /^https?:\/\/(?:www\.|smile\.)?amazon.com\/(?:.*?\/)?(?:dp|gp\/product|d)\/([0-9A-Z]+)/, sub: "https://amzn.com/$1"},
     {pattern: /^https?:\/\/(?:www\.)?ebay.com\/itm\/[^\/]+\/([0-9]+)/, sub: "https://ebay.com/itm/$1"},
@@ -9,13 +10,25 @@ const rules = [
 ];
 
 function mungeUrl(oURLstr) {
+    const params = new URL(oURLstr).searchParams;
+
+    toNextRule:
     for (let rule of rules) {
         const match = oURLstr.match(rule.pattern);
         if (!match) {
-            continue;
+            continue toNextRule;
+        }
+        if (rule.params) {
+            for (let param of rule.params) {
+                if (!params.has(param)) {
+                    continue toNextRule;
+                }
+            }
         }
         return rule.sub.replaceAll(/\$([0-9]+)/g, (_, num) => {
             return match[parseInt(num)];
+        }).replaceAll(/\${([^}]+)}/g, (_, param) => {
+            return params.get(param)
         });
     }
     return oURLstr;

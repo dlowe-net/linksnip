@@ -29,7 +29,13 @@
          want: "https://youtu.be/dQw4w9WgXcQ"},
         {url:
          "https://www.reddit.com/r/pics/comments/haucpf/ive_found_a_few_funny_memories_during_lockdown/",
-         want: "https://redd.it/haucpf"}
+         want: "https://redd.it/haucpf"},
+        {url:
+         "https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=30",
+         want: "https://youtu.be/dQw4w9WgXcQ?t=30"},
+        {url:
+         "https://www.youtube.com/watch?t=30&v=dQw4w9WgXcQ",
+         want: "https://youtu.be/dQw4w9WgXcQ?t=30"}
     ];
     function runTests() {
         var runCount = 0;
