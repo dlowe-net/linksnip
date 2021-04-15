@@ -27,30 +27,36 @@ function delay(ms) {
     };
 }
 
-const statusDiv = document.getElementById("status");
-chrome.tabs.query({ active: true, currentWindow: true }).then(
-    function (result) {
-        const tab = result[0];
-        const url = mungeUrl(tab.url || tab.pendingUrl);
-        navigator.clipboard.writeText(url).then(
-            function() {
-                statusDiv.innerHTML = "Copied " + url;
-            },
-            function(err) {
-                const textArea = document.createElement('textarea');
-                document.body.append(textArea);
-                textArea.textContent = url;
-                textArea.select();
-                document.execCommand('copy');
-                textArea.remove();
-                statusDiv.innerHTML = "Copied " + url;
-                
-            });
-    },
-    function(result) {
-        statusDiv.innerHTML = "Failed to acquire tab";
-    }
-).then(delay(1000)).then(
-    function() {
-        window.close();
-    });
+function popup() {
+    const statusDiv = document.getElementById("status");
+    chrome.tabs.query({ active: true, currentWindow: true }).then(
+        function (result) {
+            const tab = result[0];
+            const url = mungeUrl(tab.url || tab.pendingUrl);
+            navigator.clipboard.writeText(url).then(
+                function() {
+                    statusDiv.innerHTML = url;
+                },
+                function(err) {
+                    const textArea = document.createElement('textarea');
+                    document.body.append(textArea);
+                    textArea.textContent = url;
+                    textArea.select();
+                    document.execCommand('copy');
+                    textArea.remove();
+                    statusDiv.innerHTML = url;
+
+                });
+        },
+        function(result) {
+            statusDiv.innerHTML = "Failed to acquire tab";
+        }
+    ).then(delay(2000)).then(
+        function() {
+            window.close();
+        });
+}
+
+if (document.body.id == "linksnip-popup-body") {
+    popup();
+}

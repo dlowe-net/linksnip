@@ -1,0 +1,63 @@
+<html><head>
+    <style>
+      #failures {
+          display:none;
+      }
+      #failures,#failures td,#failures th {
+          border: 1px solid black;
+          border-collapse: collapse;
+          padding: 0.5em;
+      }
+    </style>
+    <script src="popup.js"></script>
+    <script>
+    const testCases = [
+        {url:
+        "https://smile.amazon.com/CloudValley-W3-0-6mm-Thin-Sticker-Surfcase/dp/B07B66VZ97/?_encoding=UTF8&pd_rd_w=uwL9y&pf_rd_p=43ea9b7e-4160-4f68-b311-3810df065596&pf_rd_r=XJFX332VNAJR169AXHSV&pd_rd_r=304deadc-8bb7-4064-a762-cabc8d26fba0&pd_rd_wg=Ytr6e&ref_=pd_gw_cr_cartx",
+         want: "https://amzn.com/B07B66VZ97"},
+        {url:
+        "https://smile.amazon.com/dp/B07B66VZ97/?_encoding=UTF8&pd_rd_w=uwL9y&pf_rd_p=43ea9b7e-4160-4f68-b311-3810df065596&pf_rd_r=XJFX332VNAJR169AXHSV&pd_rd_r=304deadc-8bb7-4064-a762-cabc8d26fba0&pd_rd_wg=Ytr6e&ref_=pd_gw_cr_cartx",
+         want: "https://amzn.com/B07B66VZ97"},
+        {url:
+         "https://www.amazon.com/gp/product/0593230574/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1",
+         want: "https://amzn.com/0593230574"},
+        {url:
+         "https://smile.amazon.com/dp/B08SZ26WF9/ref=ods_gw_ha_d_dc_gg_040821?pf_rd_r=34MREQJKH[…]228-a6c995319870&pd_rd_w=2IDIn&pd_rd_wg=a9Mfl&ref_=pd_gw_unk",
+         want: "https://amzn.com/B08SZ26WF9"},
+        {url:
+         "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+         want: "https://youtu.be/dQw4w9WgXcQ"},
+        {url:
+         "https://www.reddit.com/r/pics/comments/haucpf/ive_found_a_few_funny_memories_during_lockdown/",
+         want: "https://redd.it/haucpf"}
+    ];
+    function runTests() {
+        var runCount = 0;
+        var failures = [];
+        for (let tc of testCases) {
+            const got = mungeUrl(tc.url);
+            if (got != tc.want) {
+                failures.unshift({url: tc.url, got: got, want: tc.want})
+            }
+            runCount++;
+        }
+        document.getElementById("status").innerHTML = `<p>Ran ${runCount}, failed ${failures.length}</p>`;
+        if (failures.length > 0) {
+            const tab = document.getElementById("failures");
+            const row = tab.insertRow(-1);
+            for (let fail of failures) {
+                const row = tab.insertRow(-1);
+                row.insertCell(-1).innerHTML=`<pre><code>${fail.url}</code></pre>`;;
+                row.insertCell(-1).innerHTML=`<pre><code>${fail.want}</code></pre>`;
+                row.insertCell(-1).innerHTML=`<pre><code>${fail.got}</code></pre>`;;
+            }
+            tab.style.display = "table";
+        }
+    }
+    </script>
+  </head><body onLoad="runTests()">
+    <div id="status">Running...</div>
+    <table id="failures">
+      <tr><th>URL</th><th>Want</th><th>Got</th>
+    </table>
+</body></html>
