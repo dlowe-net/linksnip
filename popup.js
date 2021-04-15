@@ -9,7 +9,19 @@ const rules = [
     {pattern: /^https?:\/\/(?:www\.)?stackoverflow.com\/questions\/([0-9]+)/, sub: "https://stackoverflow.com/q/$1"},
     {pattern: /^https?:\/\/([^.]+)\.stackexchange.com\/questions\/[0-9]+\/[^\/]+\/([0-9]+)/, sub: "https://$1.stackexchange.com/a/$2"},
     {pattern: /^https?:\/\/([^.]+)\.stackexchange.com\/questions\/([0-9]+)/, sub: "https://$1.stackexchange.com/q/$2"},
+    {pattern: /^https?:\/\/flickr.com\/photos\/[^\/]+\/([0-9]+)/, func: flickrUrl},
 ];
+
+function flickrUrl(m) {
+    const codeTable = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+    var num = parseInt(m[1]);
+    var id = '';
+    while (num > 0) {
+        id = codeTable[num % 58] + id;
+        num = Math.floor(num / 58);
+    }
+    return `https://flic.kr/p/${id}`
+}
 
 function mungeUrl(oURLstr) {
     const params = new URL(oURLstr).searchParams;
@@ -26,6 +38,9 @@ function mungeUrl(oURLstr) {
                     continue toNextRule;
                 }
             }
+        }
+        if (rule.func) {
+            return rule.func(match)
         }
         return rule.sub.replaceAll(/\$([0-9]+)/g, (_, num) => {
             return match[parseInt(num)];
