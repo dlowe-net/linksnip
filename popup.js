@@ -13,6 +13,8 @@ const rules = [
     {pattern: /^https:\/\/github\.com\/dlowe-net\/linksnip\/?(.*)$/, sub: "https://source.linksnip.app/$1"},
     {pattern: /^https?:\/\/(?:www\.)?instagram\.com\/([^\?]+)/, sub: "https://instagr.am/$1"},
     {pattern: /^https?:\/\/flickr\.com\/photos\/[^\/]+\/([0-9]+)/, func: flickrUrl},
+    {pattern: /^https?:\/\/(?:www\.)?google.com\/search/, params: ["q", "tbm"], sub: "https://google.com/search?q=${q}&tbm=${tbm}"},
+    {pattern: /^https?:\/\/(?:www\.)?google.com\/search/, params: ["q"], sub: "https://goo.gl/search/${q}"}
 ];
 
 function flickrUrl(m) {
@@ -48,7 +50,7 @@ function mungeUrl(oURLstr) {
         return rule.sub.replaceAll(/\$([0-9]+)/g, (_, num) => {
             return match[parseInt(num)];
         }).replaceAll(/\${([^}]+)}/g, (_, param) => {
-            return params.get(param)
+            return encodeURI(params.get(param))
         });
     }
     return oURLstr;
