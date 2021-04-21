@@ -9,8 +9,9 @@ const rules = [
     {pattern: /^https?:\/\/(?:www\.)?stackoverflow\.com\/questions\/([0-9]+)/, sub: "https://stackoverflow.com/q/$1"},
     {pattern: /^https?:\/\/([^.]+)\.stackexchange\.com\/questions\/[0-9]+\/[^\/]+\/([0-9]+)/, sub: "https://$1.stackexchange.com/a/$2"},
     {pattern: /^https?:\/\/([^.]+)\.stackexchange\.com\/questions\/([0-9]+)/, sub: "https://$1.stackexchange.com/q/$2"},
-    {pattern: /^https:\/\/chrome.google.com\/webstore\/detail\/linksnip\/okaihadjplgpflaomekmidjaepnbbceo/, sub: "https://linksnip.app/"},
-    {pattern: /^https:\/\/github.com\/dlowe-net\/linksnip\/?(.*)$/, sub: "https://source.linksnip.app/$1"},
+    {pattern: /^https:\/\/chrome\.google\.com\/webstore\/detail\/linksnip\/okaihadjplgpflaomekmidjaepnbbceo/, sub: "https://linksnip.app/"},
+    {pattern: /^https:\/\/github\.com\/dlowe-net\/linksnip\/?(.*)$/, sub: "https://source.linksnip.app/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?instagram\.com\/([^\?]+)/, sub: "https://instagr.am/$1"},
     {pattern: /^https?:\/\/flickr\.com\/photos\/[^\/]+\/([0-9]+)/, func: flickrUrl},
 ];
 
