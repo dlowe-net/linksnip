@@ -6,6 +6,10 @@ that have a shortened form (like `youtube.com` links to
 `youtu.be`). This extension does not operate with URL shortening
 services.  It only computes the new URL from the existing one.
 
+In addition to copying shortened links, Linksnip will also remove
+various tracking parameters from the URL.  The result is a much
+shorter, cleaner link to be shared.
+
 To use, click on the extension button.  A shortened URL will be copied
 into the clipboard.  If the extension doesn't know how to shorten a
 URL, the whole address will be copied.
@@ -22,6 +26,7 @@ This extension requires access to:
 - Amazon
 - Ebay
 - Flickr
+- Google Search
 - Instagram
 - Reddit
 - Stack Overflow/Exchange
