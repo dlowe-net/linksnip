@@ -18,12 +18,14 @@ const rules = [
 ];
 
 const surplusParams = [
-    "source", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term",
-    "fbclid", "igshid", "srcid", "gclid", "ocid", "ncid", "nr_email_referer", "ref",
-    "spm", "utm_content", "utm_name", "utm_cid", "utm_reader", "utm_viz_id",
-    "utm_pubreferrer", "utm_swu", "ICID", "icid", "_hsenc", "_hsmi", "mkt_tok",
-    "mc_cid", "mc_eid", "ns_source", "ns_mchannel", "ns_campaign", "ns_linkname",
-    "ns_fee", "sr_share", "vero_conv", "vero_id"
+    "ICID", "_hsenc", "_hsmi", "fbclid", "gclid", "icid", "igshid",
+    "mc_cid", "mc_eid", "mkt_tok", "ncid", "nr_email_referer",
+    "ns_campaign", "ns_fee", "ns_linkname", "ns_mchannel",
+    "ns_source", "ocid", "ref", "source", "spm", "sr_share", "srcid",
+    "utm_campaign", "utm_cid", "utm_content", "utm_content",
+    "utm_medium", "utm_name", "utm_pubreferrer", "utm_reader",
+    "utm_source", "utm_swu", "utm_term", "utm_viz_id", "vero_conv",
+    "vero_id"
 ];
 
 function flickrUrl(m) {
@@ -57,15 +59,17 @@ function mungeUrl(oURLstr) {
         if (rule.func) {
             return rule.func(match)
         }
-        return rule.sub.replaceAll(/\$([0-9]+)/g, (_, num) => {
-            return match[parseInt(num)];
-        }).replaceAll(/\${([^}]+)}/g, (_, param) => {
-            return encodeURI(params.get(param))
-        });
+        return rule.sub.replaceAll(/\$(?:([0-9]+)|{([^}]+)})/g,
+                                   (_, num, param) => {
+                                       if (num) {
+                                           return match[parseInt(num)];
+                                       }
+                                       return encodeURI(params.get(param))
+                                   });
     }
 
     // The rules will generate the minimal url, but if none of those
-    // match, we can still remove extra parameters.
+    // match, we can still remove unnecessary parameters.
     for (let param of surplusParams) {
         params.delete(param)
     }
