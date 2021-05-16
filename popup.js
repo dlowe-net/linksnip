@@ -19,14 +19,14 @@ const rules = [
 ];
 
 const surplusParams = [
-    "ICID", "_hsenc", "_hsmi", "fbclid", "gclid", "icid", "igshid",
-    "mc_cid", "mc_eid", "mkt_tok", "ncid", "nr_email_referer",
-    "ns_campaign", "ns_fee", "ns_linkname", "ns_mchannel",
-    "ns_source", "ocid", "ref", "source", "spm", "sr_share", "srcid",
-    "utm_campaign", "utm_cid", "utm_content", "utm_content",
-    "utm_medium", "utm_name", "utm_pubreferrer", "utm_reader",
-    "utm_source", "utm_swu", "utm_term", "utm_viz_id", "vero_conv",
-    "vero_id"
+    "ICID", "_hsenc", "_hsmi", "_openstat", "dclid", "fbclid",
+    "gclid", "gclsrc", "icid", "igshid", "mc_cid", "mc_eid",
+    "mkt_tok", "msclkid", "ncid", "nr_email_referer", "ns_campaign",
+    "ns_fee", "ns_linkname", "ns_mchannel", "ns_source", "ocid",
+    "ref", "source", "spm", "sr_share", "srcid", "utm_campaign",
+    "utm_cid", "utm_content", "utm_content", "utm_medium", "utm_name",
+    "utm_pubreferrer", "utm_reader", "utm_source", "utm_swu",
+    "utm_term", "utm_viz_id", "vero_conv", "vero_id", "zanpid"
 ];
 
 function flickrUrl(m) {
