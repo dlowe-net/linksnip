@@ -24,10 +24,12 @@ This extension requires access to:
 # Supported sites
 
 - Amazon
+- Autotrader
 - Ebay
 - Flickr
 - Google Search
 - Instagram
+- Newegg
 - Reddit
 - Stack Overflow/Exchange
 - Youtube
