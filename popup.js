@@ -17,6 +17,7 @@ const rules = [
     {pattern: /^https?:\/\/(?:www\.)?google.com\/search/, params: ["q", "tbm"], sub: "https://google.com/search?q=${q}&tbm=${tbm}"},
     {pattern: /^https?:\/\/(?:www\.)?google.com\/search/, params: ["q"], sub: "https://goo.gl/search/${q}"},
     {pattern: /^https?:\/\/(?:www\.)?autotrader.com\/cars-for-sale\/vehicledetails.xhtml/, params: ["listingId"], sub: "https://autotrader.com/cars-for-sale/vehicledetails.xhtml?listingId=${listingId}"},
+    {pattern: /^https?:\/\/(?:www\.)?newegg.com\/([0-9a-z\-]+)\/p\/N([0-9A-Z]+)/, sub: "https://newegg.com/p/N$2"},
 ];
 
 const surplusParams = [
