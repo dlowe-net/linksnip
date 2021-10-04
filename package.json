@@ -1,0 +1,28 @@
+{
+  "name": "linksnip",
+  "version": "0.0.6",
+  "description": "Linksnip is a Chrome extension that will copy a shortened address for the current page.",
+  "main": "popup.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlowe-net/linksnip.git"
+  },
+  "keywords": [
+    "link",
+    "shortener",
+    "chrome",
+    "extension"
+  ],
+  "author": "Daniel Lowe <dlowe@dlowe.net> (https://dlowe.net/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dlowe-net/linksnip/issues"
+  },
+  "homepage": "https://github.com/dlowe-net/linksnip#readme",
+  "devDependencies": {
+    "jasmine": "^3.9.0"
+  }
+}
