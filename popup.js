@@ -115,6 +115,15 @@ function popup() {
         });
 }
 
-if (document.body && document.body.id == "linksnip-popup-body") {
-    popup();
+if (typeof document !== 'undefined') {
+    if (document && document.body && document.body.id == "linksnip-popup-body") {
+        popup();
+    }
+}
+
+if (typeof exports !== 'undefined') {
+  if (typeof module !== 'undefined' && module.exports) {
+    exports = module.exports = {mungeUrl};
+  }
+  exports.mungeUrl = mungeUrl;
 }
