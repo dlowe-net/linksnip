@@ -115,6 +115,21 @@ function popup() {
         });
 }
 
-if (document.body && document.body.id == "linksnip-popup-body") {
-    popup();
+// In the context of nodejs (such as in our Jasmine tests,) we should not
+// attempt to execute the popup function, since it will not work.
+if (typeof document !== 'undefined') {
+    if (document && document.body &&
+        document.body.id == "linksnip-popup-body") {
+        popup();
+    }
 }
+
+// Ensure that we can import this as a module from nodejs, again, such as
+// in our Jasmine tests.
+if (typeof exports !== 'undefined') {
+  if (typeof module !== 'undefined' && module.exports) {
+    exports = module.exports = {mungeUrl};
+  }
+  exports.mungeUrl = mungeUrl;
+}
+
