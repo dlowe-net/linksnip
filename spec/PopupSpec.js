@@ -121,6 +121,15 @@ describe("Linksnip", () => {
     ]);
   });
 
+  describe("for homedepot.com", () => {
+    runCases([
+      {
+        url: "https://www.homedepot.com/p/American-Standard-Champion-Tall-Height-2-Piece-High-Efficiency-1-28-GPF-Single-Flush-Elongated-Toilet-in-White-Seat-Included-747AA107SC-020/312442216?MERCH=REC-_-sp-_-pip_sponsored-_-2-_-n/a-_-HDProdPage-_-n/a-_-n/a-_-n/a&ITC=AUC-161279-23-12030",
+        want: "https://homedepot.com/p/312442216",
+      },
+    ]);
+  });
+
   describe("for generic URLs", () => {
     runCases([
       {
