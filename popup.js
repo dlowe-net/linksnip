@@ -62,7 +62,8 @@ function mungeUrl(oURLstr) {
         if (rule.func) {
             return rule.func(match)
         }
-        return rule.sub.replaceAll(/\$(?:([0-9]+)|{([^}]+)})/g,
+
+        return rule.sub.replace(/\$(?:([0-9]+)|{([^}]+)})/g,
                                    (_, num, param) => {
                                        if (num) {
                                            return match[parseInt(num)];
@@ -132,4 +133,3 @@ if (typeof exports !== 'undefined') {
   }
   exports.mungeUrl = mungeUrl;
 }
-
