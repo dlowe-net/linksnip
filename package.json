@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/dlowe-net/linksnip#readme",
   "devDependencies": {
-    "jasmine": "^3.9.0"
+    "jasmine": "^3.99.0"
   }
 }

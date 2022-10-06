@@ -28,8 +28,11 @@ This extension requires access to:
 - Ebay
 - Flickr
 - Google Search
+- Home Depot
 - Instagram
+- Kubernetes
 - Newegg
 - Reddit
 - Stack Overflow/Exchange
 - Youtube
+- go-reviews.googlesource.com
