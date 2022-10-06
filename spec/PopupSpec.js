@@ -130,6 +130,48 @@ describe("Linksnip", () => {
     ]);
   });
 
+    describe("for dophin-emu", () => {
+      runCases([
+        {
+          url: "https://bugs.dolphin-emu.org/issues/12345",
+          want: "https://dolp.in/i12345",
+        },
+        {
+          url: "https://www.github.com/dolphin-emu/dolphin/pull/12345",
+          want: "https://dolp.in/pr12345",
+        },
+      ]);
+    });
+  describe("for golang", () => {
+    runCases([
+      {
+          url: "https://github.com/golang/go/issues/12345",
+          want: "https://go.dev/issues/12345",
+      },
+      {
+          url: "https://go-review.googlesource.com/c/go/+/12345",
+          want: "https://go.dev/cl/12345",
+      },
+    ]);
+  });
+
+  describe("for kubernetes github repo", () => {
+    runCases([
+      {
+          url: "https://github.com/kubernetes/kubernetes/issues/12345#issue-54321",
+          want: "https://issues.k8s.io/12345#issue-54321",
+      },
+      {
+          url: "https://github.com/kubernetes/kubernetes/pull/12345#issue-54321",
+          want: "https://pr.k8s.io/12345#issue-54321",
+      },
+      {
+          url: "https://github.com/kubernetes/enhancements/issues/3582#issue-54321",
+          want: "https://kep.k8s.io/3582#issue-54321",
+      },
+    ]);
+  });
+
   describe("for generic URLs", () => {
     runCases([
       {

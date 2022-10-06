@@ -19,6 +19,13 @@ const rules = [
     {pattern: /^https?:\/\/(?:www\.)?autotrader.com\/cars-for-sale\/vehicledetails.xhtml/, params: ["listingId"], sub: "https://autotrader.com/cars-for-sale/vehicledetails.xhtml?listingId=${listingId}"},
     {pattern: /^https?:\/\/(?:www\.)?newegg.com\/[0-9a-z\-]+\/p\/N([0-9A-Z]+)/, sub: "https://newegg.com/p/N$1"},
     {pattern: /^https?:\/\/(?:www\.)?homedepot.com\/p\/[0-9a-zA-Z_-]+\/([0-9]+)/, sub: "https://homedepot.com/p/$1"},
+    {pattern: /^https?:\/\/bugs.dolphin-emu.org\/issues\/([0-9]+)(.*)/, sub: "https://dolp.in/i$1$2"},
+    {pattern: /^https?:\/\/(?:www\.)?github.com\/dolphin-emu\/dolphin\/pull\/([0-9]+)(.*)/, sub: "https://dolp.in/pr$1$2"},
+    {pattern: /^https?:\/\/(?:www\.)?github.com\/golang\/go\/issues\/([0-9]+)(.*)/, sub: "https://go.dev/issues/$1$2"},
+    {pattern: /^https?:\/\/go-review.googlesource.com\/c\/go\/\+\/([0-9]+)/, sub: "https://go.dev/cl/$1"},
+    {pattern: /^https?:\/\/(?:www\.)?github.com\/kubernetes\/enhancements\/issues\/([0-9]+)(.*)/, sub: "https://kep.k8s.io/$1$2"},
+    {pattern: /^https?:\/\/(?:www\.)?github.com\/kubernetes\/kubernetes\/issues\/([0-9]+)(.*)/, sub: "https://issues.k8s.io/$1$2"},
+    {pattern: /^https?:\/\/(?:www\.)?github.com\/kubernetes\/kubernetes\/pull\/([0-9]+)(.*)/, sub: "https://pr.k8s.io/$1$2"},
 ];
 
 const surplusParams = [
