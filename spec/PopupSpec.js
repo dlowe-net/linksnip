@@ -27,6 +27,10 @@ describe("Linksnip", () => {
         url: "https://smile.amazon.com/dp/B08SZ26WF9/ref=ods_gw_ha_d_dc_gg_040821?pf_rd_r=34MREQJKH[…]228-a6c995319870&pd_rd_w=2IDIn&pd_rd_wg=a9Mfl&ref_=pd_gw_unk",
         want: "https://amzn.com/dp/B08SZ26WF9",
       },
+      {
+        url: "https://us.amazon.com/MSI-Gaming-i7-9750H-Backlit-Wireless/dp/B0859KNTPS/?_encoding=UTF8&pd_rd_w=9b4Kp&content-id=amzn2.sym.bc5f3394-3b4c-4031-8ac0-18107ad75816&pf_rd_p=bc5f3394-3b4c-4031-8ac0-18107ac35816&pf_rd_r=0R4PNGPW0TXWQ7R4KYD1&pd_rd_wg=830WS&pd_rd_r=49b25d9c-ab7e-403f-875d-5a656317c2f4&ref_=pd_gw_ci_mcx_mr_hp_atx_m",
+        want: "https://amzn.com/dp/B0859KNTPS",
+      },
     ]);
   });
 
