@@ -13,23 +13,23 @@ describe("Linksnip", () => {
     runCases([
       {
         url: "https://smile.amazon.com/CloudValley-W3-0-6mm-Thin-Sticker-Surfcase/dp/B07B66VZ97/?_encoding=UTF8&pd_rd_w=uwL9y&pf_rd_p=43ea9b7e-4160-4f68-b311-3810df065596&pf_rd_r=XJFX332VNAJR169AXHSV&pd_rd_r=304deadc-8bb7-4064-a762-cabc8d26fba0&pd_rd_wg=Ytr6e&ref_=pd_gw_cr_cartx",
-        want: "https://amzn.com/dp/B07B66VZ97",
+        want: "https://amazon.com/dp/B07B66VZ97",
       },
       {
         url: "https://smile.amazon.com/dp/B07B66VZ97/?_encoding=UTF8&pd_rd_w=uwL9y&pf_rd_p=43ea9b7e-4160-4f68-b311-3810df065596&pf_rd_r=XJFX332VNAJR169AXHSV&pd_rd_r=304deadc-8bb7-4064-a762-cabc8d26fba0&pd_rd_wg=Ytr6e&ref_=pd_gw_cr_cartx",
-        want: "https://amzn.com/dp/B07B66VZ97",
+        want: "https://amazon.com/dp/B07B66VZ97",
       },
       {
         url: "https://www.amazon.com/gp/product/0593230574/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1",
-        want: "https://amzn.com/dp/0593230574",
+        want: "https://amazon.com/dp/0593230574",
       },
       {
         url: "https://smile.amazon.com/dp/B08SZ26WF9/ref=ods_gw_ha_d_dc_gg_040821?pf_rd_r=34MREQJKH[…]228-a6c995319870&pd_rd_w=2IDIn&pd_rd_wg=a9Mfl&ref_=pd_gw_unk",
-        want: "https://amzn.com/dp/B08SZ26WF9",
+        want: "https://amazon.com/dp/B08SZ26WF9",
       },
       {
         url: "https://us.amazon.com/MSI-Gaming-i7-9750H-Backlit-Wireless/dp/B0859KNTPS/?_encoding=UTF8&pd_rd_w=9b4Kp&content-id=amzn2.sym.bc5f3394-3b4c-4031-8ac0-18107ad75816&pf_rd_p=bc5f3394-3b4c-4031-8ac0-18107ac35816&pf_rd_r=0R4PNGPW0TXWQ7R4KYD1&pd_rd_wg=830WS&pd_rd_r=49b25d9c-ab7e-403f-875d-5a656317c2f4&ref_=pd_gw_ci_mcx_mr_hp_atx_m",
-        want: "https://amzn.com/dp/B0859KNTPS",
+        want: "https://amazon.com/dp/B0859KNTPS",
       },
     ]);
   });
