@@ -1,7 +1,7 @@
 {
     "name": "Linksnip",
     "description": "Copies a minimal link from the address bar into the clipboard.",
-    "version": "0.0.0.7",
+    "version": "0.0.0.8",
     "manifest_version": 3,
     "action": {
         "default_popup": "popup.html",
@@ -21,7 +21,7 @@
     "commands": {
         "_execute_action": {
             "suggested_key": {
-                "default": "Ctrl+Shift+L"
+                "default": "Ctrl+Shift+C"
             },
             "description": "Copy shortened link to clipboard"
         }
