@@ -1,0 +1,27 @@
+{
+    "name": "Linksnip",
+    "description": "Copies a minimal link from the address bar into the clipboard.",
+    "version": "0.0.0.8",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/img/linksnip16.png",
+            "32": "/img/linksnip32.png",
+            "48": "/img/linksnip48.png",
+            "128": "/img/linksnip128.png"
+        }
+    },
+    "icons": {
+        "16": "/img/linksnip16.png",
+        "32": "/img/linksnip32.png",
+        "48": "/img/linksnip48.png",
+        "128": "/img/linksnip128.png"
+    },
+    "permissions": ["clipboardWrite", "tabs"],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "linksnip@linksnip.dlowe.net"
+        }
+    }
+}
