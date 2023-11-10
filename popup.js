@@ -104,9 +104,9 @@ async function popup() {
         textArea.select();
         document.execCommand('copy');
         textArea.remove();
-        statusDiv.innerHTML = url;
+        statusDiv.replaceChildren(document.createTextNode(url));
     } catch (err) {
-        statusDiv.innerHTML = "Error: "+err;
+        statusDiv.replaceChildren(document.createTextNode("Error: "+err));
     }
     await delay(2000);
     window.close();
