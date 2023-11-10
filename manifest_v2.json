@@ -21,7 +21,8 @@
     "permissions": ["clipboardWrite", "tabs"],
     "browser_specific_settings": {
         "gecko": {
-            "id": "linksnip@linksnip.dlowe.net"
+            "id": "linksnip@linksnip.dlowe.net",
+            "strict_min_version": "63.0"
         }
     }
 }
