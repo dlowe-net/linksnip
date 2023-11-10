@@ -14,6 +14,12 @@ To use, click on the extension button.  A shortened URL will be copied
 into the clipboard.  If the extension doesn't know how to shorten a
 URL, the whole address will be copied.
 
+# Installation
+
+Firefox: https://addons.mozilla.org/en-US/firefox/addon/linksnip/
+
+Chrome: https://linksnip.app/
+
 # Permissions
 
 This extension requires access to:
