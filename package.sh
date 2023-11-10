@@ -1,7 +1,11 @@
+#!/bin/sh
+
+rm -rf pkg
 mkdir -p pkg
-rm -rf pkg/linksnip pkg/linksnip.zip
 cd pkg
 git clone ../../linksnip
-rm -rf linksnip/.gitignore linksnip/.git linksnip/img/linksnip.svg linksnip/img/linksnip_ss.png linksnip/package.sh linksnip/test.html
+rm -rf linksnip/.gitignore linksnip/.git linksnip/.github linksnip/spec linksnip/img/linksnip.svg linksnip/img/linksnip_ss.png linksnip/package.sh linksnip/test.html
+mv linksnip/manifest_$1.json linksnip/manifest.json
 find linksnip
-zip -r linksnip.zip linksnip
+cd linksnip
+zip -r ../linksnip-$2.zip .
