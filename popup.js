@@ -89,48 +89,33 @@ function mungeUrl(oURLstr) {
 }
 
 function delay(ms) {
-    return function(x) {
-        return new Promise(resolve => setTimeout(() => resolve(x), ms));
-    };
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function popup() {
-    const statusDiv = document.getElementById("status");
-    chrome.tabs.query({ active: true, currentWindow: true }).then(
-        function (result) {
-            const tab = result[0];
-            const url = mungeUrl(tab.url || tab.pendingUrl);
-            navigator.clipboard.writeText(url).then(
-                function() {
-                    statusDiv.innerHTML = url;
-                },
-                function(err) {
-                    const textArea = document.createElement('textarea');
-                    document.body.append(textArea);
-                    textArea.textContent = url;
-                    textArea.select();
-                    document.execCommand('copy');
-                    textArea.remove();
-                    statusDiv.innerHTML = url;
-
-                });
-        },
-        function(result) {
-            statusDiv.innerHTML = "Failed to acquire tab";
-        }
-    ).then(delay(2000)).then(
-        function() {
-            window.close();
-        });
+async function popup() {
+    try {
+        const statusDiv = document.getElementById("status");
+        const result = await chrome.tabs.query({ active: true, currentWindow: true });
+        const tab = result[0];
+        const url = mungeUrl(tab.url || tab.pendingUrl);
+        const textArea = document.createElement('textarea');
+        document.body.append(textArea);
+        textArea.textContent = url;
+        textArea.select();
+        document.execCommand('copy');
+        textArea.remove();
+        statusDiv.innerHTML = url;
+    } catch (err) {
+        statusDiv.innerHTML = "Error: "+err;
+    }
+    await delay(2000);
+    window.close();
 }
 
 // In the context of nodejs (such as in our Jasmine tests,) we should not
 // attempt to execute the popup function, since it will not work.
 if (typeof document !== 'undefined') {
-    if (document && document.body &&
-        document.body.id == "linksnip-popup-body") {
-        popup();
-    }
+    document.addEventListener('DOMContentLoaded', popup);
 }
 
 // Ensure that we can import this as a module from nodejs, again, such as
