@@ -1,7 +1,7 @@
 {
   "name": "linksnip",
-  "version": "0.0.7",
-  "description": "Linksnip is a Chrome extension that will copy a shortened address for the current page.",
+  "version": "0.0.0.9",
+  "description": "Linksnip is a browser extension that will copy a shortened address for the current page.",
   "main": "popup.js",
   "scripts": {
     "test": "jasmine"
