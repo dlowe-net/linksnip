@@ -94,8 +94,12 @@ function delay(ms) {
 
 async function popup() {
     const statusDiv = document.getElementById("status");
+    if (chrome) {
+        // cross-browser compatibility hack
+        browser = chrome;
+    }
     try {
-        const result = await chrome.tabs.query({ active: true, currentWindow: true });
+        const result = await browser.tabs.query({ active: true, currentWindow: true });
         const tab = result[0];
         const url = mungeUrl(tab.url || tab.pendingUrl);
         const textArea = document.createElement('textarea');
